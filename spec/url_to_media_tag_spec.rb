@@ -23,5 +23,10 @@ describe UrlToMediaTag do
     it "marks output as html_safe" do
       UrlToMediaTag.convert('http://vimeo.com/26881896').html_safe?.should == true
     end
+
+    it "prevents xss" do
+      UrlToMediaTag.convert('http://vimeo.com/26881896<').should == nil
+      UrlToMediaTag.convert('http://vimeo.com/26881896>').should == nil
+    end
   end
 end

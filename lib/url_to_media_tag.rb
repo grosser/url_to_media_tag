@@ -9,6 +9,9 @@ module UrlToMediaTag
   def self.convert(url, options={})
     options = DEFAULTS.merge(options)
 
+    # prevent any kind of html or xss
+    return if url.include?('>') or url.include?('<')
+
     result = case url
 
     # youtube
