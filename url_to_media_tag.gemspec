@@ -5,12 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = %q{url_to_media_tag}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Michael Grosser"]
   s.date = %q{2011-08-03}
   s.email = %q{michael@grosser.it}
+  s.files = [
+    "Gemfile",
+    "Gemfile.lock",
+    "Rakefile",
+    "Readme.md",
+    "VERSION",
+    "lib/url_to_media_tag.rb",
+    "spec/spec_helper.rb",
+    "spec/url_to_media_tag_spec.rb",
+    "url_to_media_tag.gemspec"
+  ]
   s.homepage = %q{http://github.com/grosser/url_to_media_tag}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
