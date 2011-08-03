@@ -15,5 +15,13 @@ describe UrlToMediaTag do
       expected = "<iframe src=\"http://player.vimeo.com/video/26881896?title=0&byline=0&portrait=0\" width=\"640\" height=\"480\" frameborder=\"0\"></iframe>"
       UrlToMediaTag.convert('http://vimeo.com/26881896').should == expected
     end
+
+    it "does not convert unknown" do
+      UrlToMediaTag.convert('xxx').should == nil
+    end
+
+    it "marks output as html_safe" do
+      UrlToMediaTag.convert('http://vimeo.com/26881896').html_safe?.should == true
+    end
   end
 end

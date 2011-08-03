@@ -9,7 +9,7 @@ module UrlToMediaTag
   def self.convert(url, options={})
     options = DEFAULTS.merge(options)
 
-    case url
+    result = case url
 
     # youtube
     when /http:\/\/(www.)?youtube\.com\/watch\?v=([A-Za-z0-9._%-]*)(\&\S+)?|http:\/\/(www.)?youtu\.be\/([A-Za-z0-9._%-]*)?/
@@ -33,5 +33,8 @@ module UrlToMediaTag
 
       %{<iframe src="http://player.vimeo.com/video/#{vimeo_id}#{query_string}" width="#{width}" height="#{height}" frameborder="#{frameborder}"></iframe>}
     end
+
+    result = result.html_safe if result.respond_to?(:html_safe)
+    result
   end
 end
