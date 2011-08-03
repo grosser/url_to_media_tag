@@ -15,9 +15,19 @@ Or
 
 Usage
 =====
+### Convert
+
     UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU') # -> <iframe ...>
     UrlToMediaTag.convert(url, :width => 480, :height => 320)           # -> <iframe ...>
     UrlToMediaTag.convert('no-url')                                     # -> nil
+
+### Find
+
+    urls = text.scan(%r{https?://[^\s]*})
+
+### Replace
+
+    text_with_embed = text.gsub(%r{https?://[^\s]*}){|url| UrlToMediaTag.convert(url) }
 
 Alternative
 ===========
