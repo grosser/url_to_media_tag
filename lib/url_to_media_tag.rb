@@ -6,6 +6,16 @@ module UrlToMediaTag
     :height => 480
   }
 
+  def self.video_iframe(url, options)
+    options = {:src => url, :class => "url-to-media-tag-video", :frameborder => 0}.merge(options)
+    tag(:iframe, options)
+  end
+
+  def self.tag(name, options)
+    options = options.map{|k,v| "#{k}=\"#{v}\"" }.sort.join(" ")
+    %{<#{name} #{options}></#{name}>}
+  end
+
   def self.convert(url, options={})
     options = DEFAULTS.merge(options)
 
@@ -17,24 +27,22 @@ module UrlToMediaTag
     # youtube
     when /http:\/\/(www.)?youtube\.com\/watch\?v=([A-Za-z0-9._%-]*)(\&\S+)?|http:\/\/(www.)?youtu\.be\/([A-Za-z0-9._%-]*)?/
       youtube_id = $2 || $5
-      width = options[:width]
-      height = options[:height]
-      frameborder = options[:frameborder]
-      %{<iframe class="youtube-player" type="text/html" width="#{width}" height="#{height}" src="http://www.youtube.com/embed/#{youtube_id}" frameborder="#{frameborder}"></iframe>}
+      video_iframe "http://www.youtube.com/embed/#{youtube_id}", options
 
     # vimeo
     when /http:\/\/(www.)?vimeo\.com\/([A-Za-z0-9._%-]*)((\?|#)\S+)?/
       vimeo_id = $2
-      width = options[:width]
-      height = options[:height]
-      show_title = "title=0" unless options[:show_title]
-      show_byline = "byline=0" unless options[:show_byline]
-      show_portrait = "portrait=0" unless options[:show_portrait]
-      frameborder = options[:frameborder] || 0
+      show_title = "title=0" unless options.delete(:show_title)
+      show_byline = "byline=0" unless options.delete(:show_byline)
+      show_portrait = "portrait=0" unless options.delete(:show_portrait)
       query_string_variables = [show_title, show_byline, show_portrait].compact.join("&")
       query_string = "?" + query_string_variables unless query_string_variables.empty?
 
-      %{<iframe src="http://player.vimeo.com/video/#{vimeo_id}#{query_string}" width="#{width}" height="#{height}" frameborder="#{frameborder}"></iframe>}
+      video_iframe "http://player.vimeo.com/video/#{vimeo_id}#{query_string}", options
+
+    # image
+    when /https?:\/\/\S+\.(jpe?g|gif|png|bmp|tif)(\?\S+)?/i
+      tag(:img, options.merge(:src => $&))
     end
 
     result = result.html_safe if result.respond_to?(:html_safe)
