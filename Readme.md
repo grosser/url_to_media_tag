@@ -19,7 +19,24 @@ Usage
 
     UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU') # -> <iframe ...>
     UrlToMediaTag.convert(url, :width => 480, :height => 320)           # -> <iframe ...>
+    UrlToMediaTag.convert('http://foo.com/xxx.jpg')                     # -> <img
     UrlToMediaTag.convert('no-url')                                     # -> nil
+
+### settings
+
+More specific settings overwrite others
+
+    UrlToMediaTag.convert(url, :width => '400px', :settings => {:image => {:width => '100%'}, :vimeo => {:show_title => true})
+    any   -> :width => '400px'
+    image -> :width => '100%'
+    vimeo -> :width => '400px', :show_title => true
+
+Videos get default settings
+
+    :width => 640,
+    :height => 480,
+    :class => "url-to-media-tag-video",
+    :frameborder => 0
 
 ### Find
 
@@ -35,7 +52,6 @@ Alternative
 
 TODO
 ====
- - support images
  - let users choose which providers to convert
 
 Author
