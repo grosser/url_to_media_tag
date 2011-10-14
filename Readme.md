@@ -4,7 +4,9 @@ Supports:
 
  - Youtube
  - Vimeo
- - ... soon more ...
+ - *.jpg/png/gif
+ - easy to add more
+ - give size settings and restrict providers
 
 Install
 =======
