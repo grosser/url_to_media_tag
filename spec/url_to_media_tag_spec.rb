@@ -7,7 +7,7 @@ describe UrlToMediaTag do
 
   describe 'convert' do
     it "converts youtube" do
-      expected = "<iframe class=\"url-to-media-tag-video\" frameborder=\"0\" height=\"480\" src=\"http://www.youtube.com/embed/kW-dS4otEZU\" width=\"640\"></iframe>"
+      expected = "<iframe class=\"url-to-media-tag-video\" frameborder=\"0\" height=\"480\" src=\"http://www.youtube.com/embed/kW-dS4otEZU?rel=0\" width=\"640\"></iframe>"
       UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU').should == expected
     end
 
@@ -65,6 +65,11 @@ describe UrlToMediaTag do
       it "can take options from settings" do
         UrlToMediaTag.convert('http://vimeo.com/26881896').should include('title=0')
         UrlToMediaTag.convert('http://vimeo.com/26881896', :settings => {:vimeo => {:show_title => true}}).should_not include('title=0')
+      end
+
+      it "can show suggested videos" do
+        UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU').should include('rel=0')
+        UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU', :show_rel => true).should_not include('rel=0')
       end
     end
   end
