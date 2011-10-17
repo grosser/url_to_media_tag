@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{url_to_media_tag}
-  s.version = "0.1.3"
+  s.name = "url_to_media_tag"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Michael Grosser"]
-  s.date = %q{2011-08-04}
-  s.email = %q{michael@grosser.it}
+  s.date = "2011-10-17"
+  s.email = "michael@grosser.it"
   s.files = [
     "Gemfile",
     "Gemfile.lock",
@@ -22,10 +22,10 @@ Gem::Specification.new do |s|
     "spec/url_to_media_tag_spec.rb",
     "url_to_media_tag.gemspec"
   ]
-  s.homepage = %q{http://github.com/grosser/url_to_media_tag}
+  s.homepage = "http://github.com/grosser/url_to_media_tag"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Convert a Url to image or video embed}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Convert a Url to image or video embed"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
