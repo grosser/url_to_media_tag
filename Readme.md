@@ -58,6 +58,11 @@ TODO
 
 Author
 ======
+
+### [Contributors](http://github.com/grosser/url_to_media_tag/contributors)
+ - [Ozéias Sant'ana](https://github.com/ozeias)
+
+
 Filter logic borrowed from Dejan Simic`s [auto_html](https://github.com/dejan/auto_html) MIT-LICENSE
 
 [Michael Grosser](http://grosser.it)<br/>
