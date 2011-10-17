@@ -40,8 +40,8 @@ module UrlToMediaTag
     when /http:\/\/(www.)?youtube\.com\/watch\?v=([A-Za-z0-9._%-]*)(\&\S+)?|http:\/\/(www.)?youtu\.be\/([A-Za-z0-9._%-]*)?/
       options = merge_settings(:video, :vimeo, options)
       youtube_id = $2 || $5
-      show_rel = "?rel=0" unless options.delete(:show_rel)
-      video_iframe "http://www.youtube.com/embed/#{youtube_id}#{show_rel}", options
+      related_videos = "?rel=0" unless options.delete(:related_videos)
+      video_iframe "http://www.youtube.com/embed/#{youtube_id}#{related_videos}", options
 
     # vimeo
     when /http:\/\/(www.)?vimeo\.com\/([A-Za-z0-9._%-]*)((\?|#)\S+)?/

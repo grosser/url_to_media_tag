@@ -69,7 +69,7 @@ describe UrlToMediaTag do
 
       it "can show suggested videos" do
         UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU').should include('rel=0')
-        UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU', :show_rel => true).should_not include('rel=0')
+        UrlToMediaTag.convert('http://www.youtube.com/watch?v=kW-dS4otEZU', :related_videos => true).should_not include('rel=0')
       end
     end
   end
